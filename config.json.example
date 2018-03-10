@@ -1,0 +1,11 @@
+{
+    "nanoleaf": {
+        "host": "",
+        "token": ""
+    },
+    "rabbitmq": {
+        "hostname": "",
+        "username": "",
+        "password": ""
+    }
+}

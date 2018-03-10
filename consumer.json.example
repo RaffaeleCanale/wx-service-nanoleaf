@@ -1,0 +1,25 @@
+{
+    "wake.early": {
+        "job": "Wake",
+        "duration": "30m",
+        "tickRate": "30s"
+    },
+    "wake.exact": [{
+        "job": "Progress",
+        "duration": "70s",
+        "tickRate": "1s",
+        "panels": [
+            39,
+            121,
+            200,
+            48,
+            85,
+            59,
+            209,
+            242,
+            127
+        ]
+    }, {
+        "job": "Stop"
+    }]
+}

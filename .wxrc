@@ -1,0 +1,9 @@
+{
+    "files": [{
+        "name": "wx-service-nanoleaf/config.json",
+        "output": "config.json"
+    }, {
+        "name": "wx-service-nanoleaf/consumer.json",
+        "output": "consumer.json"
+    }]
+}

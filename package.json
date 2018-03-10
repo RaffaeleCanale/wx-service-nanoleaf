@@ -1,0 +1,34 @@
+{
+    "name": "wx-service-nanoleaf",
+    "version": "0.0.1",
+    "description": "Service that controls Nanoleaf LEDs through RabbitMQ messages",
+    "repository": "github:RaffaeleCanale/wx-service-nanoleaf",
+    "license": "MIT",
+    "main": "dist/bundle.js",
+    "scripts": {
+        "start": "node dist/bundle.dev.js",
+        "build": "NODE_ENV=production webpack",
+        "watch": "NODE_ENV=dev webpack -w",
+        "debug": "node --inspect-brk dist/bundle.dev.js"
+    },
+    "author": "Raffaele Canale",
+    "devDependencies": {
+        "babel-core": "^6.26.0",
+        "babel-loader": "^7.1.2",
+        "babel-preset-es2017": "^6.24.1",
+        "eslint": "^4.18.1",
+        "eslint-config-airbnb-base": "^12.1.0",
+        "eslint-import-resolver-webpack": "^0.8.4",
+        "eslint-plugin-import": "^2.9.0",
+        "uglifyjs-webpack-plugin": "^1.2.2",
+        "webpack": "^3.11.0"
+    },
+    "dependencies": {
+        "joi": "^13.1.2",
+        "js-utils": "git://github.com/RaffaeleCanale/js-utils.git",
+        "lodash": "^4.17.5",
+        "minimist": "^1.2.0",
+        "nanoleaves": "^1.2.0",
+        "wx-client-rabbitmq": "git://github.com/RaffaeleCanale/wx-client-rabbitmq.git"
+    }
+}
