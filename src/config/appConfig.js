@@ -1,5 +1,5 @@
 import Joi from 'joi';
-import { readJsonFile } from 'js-utils/file-utils';
+import { readJson } from 'js-utils/file-utils';
 
 const schema = Joi.object().keys({
     nanoleaf: Joi.object().keys({
@@ -16,7 +16,7 @@ function validate(config) {
 }
 
 export default function load(file) {
-    return readJsonFile(file).then(validate)
+    return readJson(file).then(validate)
         .catch((err) => {
             throw new Error(`Error while parsing config file: ${file}\n${err}`);
         });

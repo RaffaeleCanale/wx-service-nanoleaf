@@ -1,5 +1,5 @@
 import _ from 'lodash';
-import { readJsonFile } from 'js-utils/file-utils';
+import { readJson } from 'js-utils/file-utils';
 import Jobs from 'jobs';
 
 function parseJob(value) {
@@ -27,7 +27,7 @@ function parse(config) {
 }
 
 export default function load(file) {
-    return readJsonFile(file).then(parse)
+    return readJson(file).then(parse)
         .catch((err) => {
             throw new Error(`Error while parsing consumer file: ${file}\n${err}`);
         });
