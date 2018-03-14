@@ -1,6 +1,6 @@
 {
     "name": "wx-service-nanoleaf",
-    "version": "0.0.1",
+    "version": "0.1.1",
     "description": "Service that controls Nanoleaf LEDs through RabbitMQ messages",
     "repository": "github:RaffaeleCanale/wx-service-nanoleaf",
     "license": "MIT",
