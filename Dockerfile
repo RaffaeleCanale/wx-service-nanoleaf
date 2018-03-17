@@ -1,14 +1,12 @@
 FROM node
 WORKDIR /etc/nanoleaf/
 
-COPY package*.json /etc/nanoleaf/
-COPY webpack.config.js /etc/nanoleaf/
-COPY src/ /etc/nanoleaf/src
-COPY .babelrc /etc/nanoleaf/
-COPY config.json /etc/nanoleaf/
-COPY consumer.json /etc/nanoleaf/
+COPY src/ src/
+COPY package*.json webpack.config.js .babelrc ./
 
-RUN npm install
-RUN npm run build
+RUN npm install && \
+    npm run build
+
+COPY config.json consumer.json ./
 
 CMD ["npm", "start"]
