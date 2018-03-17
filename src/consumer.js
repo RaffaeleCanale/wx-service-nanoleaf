@@ -9,8 +9,11 @@ export default class Consumer {
         this.logger = getLogger('nanoleafConsumer');
     }
 
-    _createJobs(binding) {
+    _createJobs(message, binding) {
         const jobsConfig = this.config[binding];
+        if (_.isPlainObject(message)) {
+            _.assign(jobsConfig, message);
+        }
         if (!jobsConfig) {
             this.logger.warn('No job found for', binding);
             return null;
@@ -54,7 +57,7 @@ export default class Consumer {
     }
 
     consume(message, binding) {
-        const jobs = this._createJobs(binding);
+        const jobs = this._createJobs(message, binding);
         if (jobs) {
             this._stopJobs();
             this._startJobs(jobs);
