@@ -9,7 +9,7 @@ import consumerLoad from 'config/consumerConfig';
 import MockApi from 'utils/mockApi';
 
 const argv = minimist(process.argv.slice(2));
-const { debug } = argv;
+const { debug, binding, message } = argv;
 
 const initFunctions = {
 
@@ -37,8 +37,8 @@ const initFunctions = {
     },
 
     listen() {
-        if (debug) {
-            this.consumer.consume('', debug);
+        if (binding) {
+            this.consumer.consume(JSON.parse(message || ''), binding);
         } else {
             this.rabbitListener.listen(this.consumer.consume.bind(this.consumer));
         }

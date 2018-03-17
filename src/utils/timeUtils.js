@@ -41,3 +41,16 @@ export function parse(string) {
 
     return unit(time);
 }
+
+export function msToTime(duration) {
+    const ms = parseInt((duration % 1000) / 100, 10);
+    let s = parseInt((duration / 1000) % 60, 10);
+    let m = parseInt((duration / (1000 * 60)) % 60, 10);
+    let h = parseInt((duration / (1000 * 60 * 60)) % 24, 10);
+
+    h = (h < 10) ? '0' + h : h;
+    m = (m < 10) ? '0' + m : m;
+    s = (s < 10) ? '0' + s : s;
+
+    return `${h}:${m}:${s}.${ms}`;
+}

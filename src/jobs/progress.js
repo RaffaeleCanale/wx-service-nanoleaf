@@ -25,8 +25,8 @@ function sameColor(c1, c2) {
 
 export default class Progress extends ProgressJob {
 
-    constructor(api, options) {
-        super('progress', options);
+    constructor(api, options, message) {
+        super('progress', options, message);
 
         if (!_.isArray(options.panels)) {
             throw new Error('Missing panels for job Progress');

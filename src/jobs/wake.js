@@ -2,8 +2,8 @@ import ProgressJob from 'jobs/abstractProgressJob';
 
 export default class Wake extends ProgressJob {
 
-    constructor(api, options) {
-        super('wake', options);
+    constructor(api, options, message) {
+        super('wake', options, message);
         this.api = api;
     }
 

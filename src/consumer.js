@@ -11,9 +11,6 @@ export default class Consumer {
 
     _createJobs(message, binding) {
         const jobsConfig = this.config[binding];
-        if (_.isPlainObject(message)) {
-            _.assign(jobsConfig, message);
-        }
         if (!jobsConfig) {
             this.logger.warn('No job found for', binding);
             return null;
@@ -22,7 +19,7 @@ export default class Consumer {
         try {
             return jobsConfig.map((jobConfig) => {
                 const { JobClass } = jobConfig;
-                const job = new JobClass(this.api, jobConfig);
+                const job = new JobClass(this.api, jobConfig, message);
                 job.onstop = this._onstop.bind(this, job);
                 return job;
             });
