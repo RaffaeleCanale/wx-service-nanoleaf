@@ -1,12 +1,20 @@
 import _ from 'lodash';
 import ProgressJob from 'jobs/abstractProgressJob';
 
+function round(color) {
+    return _.assign({}, color, {
+        r: Math.round(color.r),
+        g: Math.round(color.g),
+        b: Math.round(color.b),
+    });
+}
+
 function rgb(r, g, b) {
-    return { r, g, b };
+    return round({ r, g, b });
 }
 
 function panel(id, r, g, b) {
-    return { id, r, g, b }; // eslint-disable-line
+    return round({ id, r, g, b }); // eslint-disable-line
 }
 
 function sameColor(c1, c2) {
@@ -29,19 +37,6 @@ export default class Progress extends ProgressJob {
         this.unit = 1.0 / this.panels.length;
     }
 
-/*
-00 => {}
-10 => {}
-20 => {a}
-30 => {A,b}
-40 => {A,B}
-50 => {A,B,c}
-60 => {A,B,C}
-70 => {A,B,C,d}
-80 => {A,B,C,D}
-90 => {A,B,C,D,e}
-100 => {A,B,C,D,E}
-*/
     _turnPanelOn(progress) {
         const panels = [];
         const currentIndex = Math.floor(progress / this.unit);
@@ -57,30 +52,6 @@ export default class Progress extends ProgressJob {
         }
 
         return this._apply(panels);
-
-
-
-        // const panelId = this.panels[i];
-        // const panelState = this.panelsState[i];
-        //
-        // if (!panelState) {
-        //     const panels = [];
-        //     for (let j = 0; j <= i; j += 1) {
-        //         if (!this.panelsState[j]) {
-        //             this.panelsState[j] = true;
-        //             panels.push({
-        //                 id: panelId,
-        //                 r: 255,
-        //                 g: 0,
-        //                 b: 0,
-        //             });
-        //         }
-        //     }
-        //
-        //     return this.api.setStaticPanel(panels);
-        // }
-        //
-        // return Promise.resolve();
     }
 
     _apply(colors) {
@@ -90,6 +61,10 @@ export default class Progress extends ProgressJob {
                 _.assign(this.panels[i], colors[i]);
                 toApply.push(this.panels[i]);
             }
+        }
+
+        if (toApply.length === 0) {
+            return Promise.resolve();
         }
 
         return this.api.setStaticPanel(toApply);
